@@ -1,0 +1,23 @@
+{
+  "name": "sections-groov",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "preview": "vite preview",
+    "storybook": "storybook dev -p 6006",
+    "build-storybook": "storybook build"
+  },
+  "devDependencies": {
+    "@storybook/addon-docs": "^10.4.5",
+    "@storybook/addon-vitest": "^10.4.6",
+    "@storybook/html-vite": "^10.4.5",
+    "live-server": "^1.2.2",
+    "storybook": "^10.4.5",
+    "vite": "^6.3.5",
+    "vitest": "^4.1.9",
+    "playwright": "^1.61.0",
+    "@vitest/browser-playwright": "^4.1.9",
+    "@vitest/coverage-v8": "^4.1.9"
+  }
+}
