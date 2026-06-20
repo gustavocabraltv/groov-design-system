@@ -85,7 +85,7 @@ export function initModelScrollSection(section) {
       item.style.setProperty("--progress", itemProgress.toFixed(3));
       item.classList.toggle("text-white", index === nextIndex);
       item.classList.toggle("text-white/50", index !== nextIndex);
-      item.classList.toggle("font-extrabold", index === nextIndex);
+      item.classList.toggle("font-black", index === nextIndex);
       item.classList.toggle("font-bold", index !== nextIndex);
     });
   }
@@ -140,7 +140,7 @@ export function initHeroModelCarouselSection(section) {
       item.style.setProperty("--progress", itemProgress.toFixed(3));
       item.classList.toggle("text-white", index === activeIndex);
       item.classList.toggle("text-white/60", index !== activeIndex);
-      item.classList.toggle("font-extrabold", index === activeIndex);
+      item.classList.toggle("font-black", index === activeIndex);
       item.classList.toggle("font-bold", index !== activeIndex);
       item.setAttribute("aria-pressed", String(index === activeIndex));
     });

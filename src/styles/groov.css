@@ -1,6 +1,22 @@
 @font-face {
   font-family: "Neue Haas Grotesk";
-  src: url("../../assets/fonts/NeueHaasDisplay/NeueHaasDisplayLight.ttf") format("truetype");
+  src: url("../../assets/fonts/NeueHaasDisplay/NeueHaasDisplayXXThin.ttf") format("truetype");
+  font-weight: 100;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Neue Haas Grotesk";
+  src: url("../../assets/fonts/NeueHaasDisplay/NeueHaasDisplayXThin.ttf") format("truetype");
+  font-weight: 200;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Neue Haas Grotesk";
+  src: url("../../assets/fonts/NeueHaasDisplay/NeueHaasDisplayThin.ttf") format("truetype");
   font-weight: 300;
   font-style: normal;
   font-display: swap;

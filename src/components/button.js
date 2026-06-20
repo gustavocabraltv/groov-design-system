@@ -1,7 +1,9 @@
+import { type } from "../styles/typography.js";
+
 const html = String.raw;
 
 const baseClasses =
-  "inline-flex h-10 items-center justify-center rounded-full px-6 text-[13px] font-bold transition focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--groov-blue)]";
+  `inline-flex h-10 items-center justify-center rounded-full px-6 ${type.action} transition focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--groov-blue)]`;
 
 const variantClasses = {
   primary: "bg-[var(--groov-blue)] text-white shadow-[0_14px_30px_rgba(54,148,243,0.25)] hover:bg-[#2488e8]",

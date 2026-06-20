@@ -1,6 +1,7 @@
 import { assets, scrollModels } from "./data.js";
 import { button } from "../components/button.js";
 import { logoMarquee } from "../components/logo-marquee.js";
+import { type } from "../styles/typography.js";
 
 const html = String.raw;
 
@@ -49,12 +50,12 @@ function megaMenuProductCard(product, index) {
           <img src="${product.image}" alt="${product.name}" class="mx-auto h-full w-full object-contain transition duration-500 group-hover:scale-[1.025]" />
         </div>
         <div class="flex w-full flex-col items-center justify-center gap-3">
-          <h3 class="w-full text-center text-[24px] font-bold leading-[0.9] text-black">${product.name}</h3>
+          <h3 class="w-full text-center ${type.h4} font-bold leading-none text-black">${product.name}</h3>
           <div class="flex items-center gap-3">
-            <span class="text-[12px] leading-[0.9] text-[#909090]">${product.price}</span>
+            <span class="${type.caption} text-[#909090]">${product.price}</span>
             <span class="inline-flex h-[21px] items-center gap-[7px] rounded-full border border-[#e2dede] bg-white py-1 pl-1.5 pr-3">
               <img src="${product.tagIcon}" alt="" class="h-[11px] w-[11px] object-contain" />
-              <span class="text-[12px] leading-[1.4] text-[#7e8590]">${product.tag}</span>
+              <span class="${type.caption} text-[#7e8590]">${product.tag}</span>
             </span>
           </div>
         </div>
@@ -71,7 +72,7 @@ export function megaMenu({ open = false } = {}) {
           ${assets.navigationProducts.map(megaMenuProductCard).join("")}
         </div>
         <div class="w-full border-t border-[#e5e6e7] py-6">
-          <div class="flex items-center justify-center gap-[61px] text-[16px] font-bold leading-[1.4] text-black">
+          <div class="flex items-center justify-center gap-[61px] ${type.action} text-black">
             <a href="#" class="inline-flex items-center gap-[5px] transition hover:text-black/55">Explore all Models <span aria-hidden="true">&#8599;</span></a>
             <a href="#" class="inline-flex items-center gap-[5px] transition hover:text-black/55">Take the Foot Fit Quiz <span aria-hidden="true">&#8599;</span></a>
           </div>
@@ -91,7 +92,7 @@ export function header({ megaMenuOpen = false, transparent = false, tone = "defa
           <img src="${assets.logo}" alt="Groov logo" class="groov-header-logo h-[33px] w-[108px] object-contain" />
         </a>
 
-        <nav aria-label="Primary navigation" class="hidden items-center gap-[26px] text-[13px] font-medium text-[#707070] md:flex">
+        <nav aria-label="Primary navigation" class="hidden items-center gap-[26px] ${type.ui} text-[#707070] md:flex">
           <a href="#" class="mega-menu-nav-item transition hover:text-black" data-label="Shop"><span>Shop</span></a>
           <button type="button" class="mega-menu-trigger mega-menu-nav-item transition hover:text-black" data-mega-menu-trigger data-label="Insoles" aria-expanded="${megaMenuOpen ? "true" : "false"}" aria-controls="groov-mega-menu"><span>Insoles</span></button>
           <a href="#" class="mega-menu-nav-item transition hover:text-black" data-label="Gift Groov"><span>Gift Groov</span></a>
@@ -100,7 +101,7 @@ export function header({ megaMenuOpen = false, transparent = false, tone = "defa
         </nav>
 
         <div class="flex items-center gap-3">
-          <div class="groov-header-compat hidden items-center gap-[11px] text-[13px] font-medium text-black/90 sm:flex">
+          <div class="groov-header-compat hidden items-center gap-[11px] ${type.ui} text-black/90 sm:flex">
             <span>Compatible with</span>
             <img src="${assets.apple}" alt="Apple" class="groov-header-apple h-[18px] w-[15px]" />
           </div>
@@ -118,11 +119,11 @@ export function heroSection() {
     <section class="relative bg-white pb-16 pt-4 md:pb-24">
       ${header()}
       <div class="page-container relative z-10 flex flex-col items-center pt-16 text-center md:pt-20">
-        <p class="text-sm font-extrabold uppercase leading-none text-[#1b1b1d] md:text-base">Custom Insoles, Powered By AI</p>
-        <h1 class="mt-4 max-w-[1010px] font-display text-[24px] font-black leading-[0.92] text-[#111] md:text-[64px]">
+        <p class="${type.eyebrow} text-[#1b1b1d]">Custom Insoles, Powered By AI</p>
+        <h1 class="mt-4 max-w-[1010px] ${type.h1} text-[#111]">
           End pain. Maximize comfort.<br />Optimize performance.
         </h1>
-        <p class="mt-6 max-w-[760px] text-[17px] leading-[1.45] text-[#737373] md:text-[19px]">
+        <p class="mt-6 max-w-[760px] ${type.lead} text-[#737373]">
           Groov custom insoles bridge the gap between off-the-shelf shoes and your unique feet using AI-powered foot scanning technology &mdash; all from your
           <span class="relative top-1 inline-flex items-center gap-1.5 whitespace-nowrap font-bold text-black">
             <img src="${assets.apple}" alt="" class="h-5 w-5" />
@@ -179,11 +180,11 @@ export function heroModelCarouselSection() {
       <div class="relative z-30">${header({ transparent: true, tone: "light" })}</div>
 
       <div class="hero-model-carousel-copy page-container pointer-events-none absolute inset-x-0 top-1/2 z-20 flex -translate-y-1/2 flex-col items-center text-center">
-        <p class="text-[12px] font-extrabold uppercase leading-none text-white md:text-base">Custom Insoles, Powered By AI</p>
-        <h1 class="mt-4 max-w-[300px] font-display text-[34px] font-black leading-[0.92] text-white md:max-w-[1010px] md:text-[64px]">
+        <p class="${type.eyebrow} text-white">Custom Insoles, Powered By AI</p>
+        <h1 class="mt-4 max-w-[300px] ${type.h1} text-white md:max-w-[1010px]">
           End pain. Maximize comfort.<br />Optimize performance.
         </h1>
-        <p class="mt-5 max-w-[760px] text-[14px] font-medium leading-[1.45] text-white/88 md:text-[19px]">
+        <p class="mt-5 max-w-[760px] ${type.lead} text-white/88">
           Groov custom insoles bridge the gap between off-the-shelf shoes and your unique feet using AI-powered foot scanning technology &mdash; all from your
           <span class="relative top-1 inline-flex items-center gap-1.5 whitespace-nowrap font-bold text-white">
             <img src="${assets.apple}" alt="" class="h-5 w-5 invert" />
@@ -211,7 +212,7 @@ export function heroModelCarouselSection() {
           ${scrollModels
             .map(
               (model, index) => html`
-                <button type="button" class="relative whitespace-nowrap pb-4 text-left text-[11px] font-bold ${index === 0 ? "text-white" : "text-white/60"} transition-opacity md:pb-5 md:text-[16px]" data-model-item data-model-index="${index}" data-model-name="${model.name}" data-model-duration="${model.duration || 5000}" style="--progress: 0" aria-pressed="${index === 0 ? "true" : "false"}">
+                <button type="button" class="relative whitespace-nowrap pb-4 text-left ${type.action} ${index === 0 ? "text-white" : "text-white/60"} transition-opacity md:pb-5" data-model-item data-model-index="${index}" data-model-name="${model.name}" data-model-duration="${model.duration || 5000}" style="--progress: 0" aria-pressed="${index === 0 ? "true" : "false"}">
                   ${model.name}
                 </button>
               `,
@@ -232,11 +233,11 @@ export function heroCloudsSection() {
       <div class="relative z-10">
         ${header({ transparent: true })}
         <div class="page-container flex flex-col items-center pt-14 text-center md:pt-16">
-          <p class="text-sm font-extrabold uppercase leading-none text-[#1b1b1d] md:text-base">Custom Insoles, Powered By AI</p>
-          <h1 class="mt-4 max-w-[760px] font-display text-[40px] font-black leading-[0.94] tracking-[-0.02em] text-[#050505] md:text-[48px]">
+          <p class="${type.eyebrow} text-[#1b1b1d]">Custom Insoles, Powered By AI</p>
+          <h1 class="mt-4 max-w-[900px] ${type.h1} text-[#050505]">
             End pain. Maximize comfort.<br />Optimize performance.
           </h1>
-          <p class="mt-5 max-w-[820px] text-[16px] font-medium leading-[1.28] text-black md:text-[19px]">
+          <p class="mt-5 max-w-[820px] ${type.lead} text-black">
             Groov custom insoles bridge the gap between off-the-shelf shoes and your unique feet using AI-powered foot scanning technology &mdash; all from your
             <span class="inline-flex items-center gap-1.5 whitespace-nowrap font-bold">
               <img src="${assets.apple}" alt="" class="h-5 w-5" />
@@ -269,14 +270,14 @@ export function modelScrollSection() {
         </div>
         <div class="page-container relative z-10 flex h-full flex-col justify-end pb-10 text-white md:pb-12">
           <div class="model-copy max-w-[680px]" data-model-copy>
-            <h2 class="text-[32px] font-bold leading-none md:text-[48px]" data-model-title>${scrollModels[0].title}</h2>
-            <p class="mt-3 text-base font-semibold leading-tight text-white/92 md:text-[20px]" data-model-subtitle>${scrollModels[0].subtitle}</p>
+            <h2 class="${type.h2} text-white" data-model-title>${scrollModels[0].title}</h2>
+            <p class="mt-3 ${type.lead} text-white/92" data-model-subtitle>${scrollModels[0].subtitle}</p>
           </div>
           <nav class="mt-14 grid grid-cols-4 gap-x-4 md:mt-20 md:gap-x-8" aria-label="Groov model navigation">
             ${scrollModels
               .map(
                 (model, index) => html`
-                  <button type="button" class="relative pb-4 text-left text-[11px] font-bold ${index === 0 ? "text-white" : "text-white/50"} transition-opacity md:pb-5 md:text-[21px]" data-model-item data-model-index="${index}" data-model-name="${model.name}" style="--progress: 0">
+                  <button type="button" class="relative pb-4 text-left ${type.action} ${index === 0 ? "text-white" : "text-white/50"} transition-opacity md:pb-5" data-model-item data-model-index="${index}" data-model-name="${model.name}" style="--progress: 0">
                     ${model.name}
                   </button>
                 `,
@@ -296,12 +297,12 @@ export function testimonialRevealSection() {
         <div class="flex flex-col items-start gap-7 md:flex-row md:gap-12">
           <img src="${assets.quotation}" alt="" class="mt-2 h-auto w-12 shrink-0 md:w-[60px]" />
           <div class="max-w-[1112px]">
-            <p class="font-display text-[36px] font-bold leading-[1.18] text-[#b2b2b2] md:text-[50px]" data-scroll-text-reveal data-reveal-text="Groovs turn my least favorite shoe into my favorite shoe... and my favorite shoe into my favorite favorite shoe!"></p>
+            <p class="${type.quote} text-[#b2b2b2]" data-scroll-text-reveal data-reveal-text="Groovs turn my least favorite shoe into my favorite shoe... and my favorite shoe into my favorite favorite shoe!"></p>
             <div class="mt-12 flex items-center gap-4 md:mt-11" data-author-block>
               <img src="${assets.nfl}" alt="NFL" class="h-14 w-auto shrink-0" />
               <div class="leading-tight">
-                <p class="text-[19px] font-medium text-black md:text-[21px]">Von Miller</p>
-                <p class="mt-1 text-[16px] font-bold text-[#4e626d] md:text-[18px]">Super Bowl MVP</p>
+                <p class="${type.lead} text-black">Von Miller</p>
+                <p class="mt-1 ${type.bodySmall} text-[#4e626d]">Super Bowl MVP</p>
               </div>
             </div>
           </div>
@@ -317,7 +318,7 @@ export function trustedMarqueeSection() {
       <div class="page-container">
         <div class="flex flex-col items-center text-center">
           <img src="${assets.stars}" alt="5 star rating" class="h-[17px] w-[93px]" />
-          <p class="mt-3 text-[18px] leading-[1.2] text-[#16395b] md:text-[20px]">Trusted by leaders in performance &amp; health</p>
+          <p class="mt-3 ${type.lead} text-[#16395b]">Trusted by leaders in performance &amp; health</p>
         </div>
         ${logoMarquee({ logos: assets.trustedLogos, className: "mt-9 max-w-[1072px]" })}
       </div>
@@ -333,19 +334,19 @@ function videoTestimonialCard(testimonial) {
       <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_18%_84%,rgba(0,0,0,0.58)_0%,rgba(0,0,0,0.34)_34%,rgba(0,0,0,0)_62%)]"></div>
       <div class="absolute inset-x-0 bottom-0 z-10 flex items-end justify-between gap-5 p-8 text-white md:p-10">
         <div class="max-w-[360px]">
-          <p class="text-[20px] font-medium leading-[1.28] text-white/92 md:text-[21px]">
+          <p class="${type.lead} text-white/92">
             ${testimonial.quote.includes("favorite favorite")
-              ? `&ldquo;Groov turned my least favorite shoes into my favorite shoes... and my favorite shoes into my <strong class="font-extrabold text-white">favorite favorite shoes.</strong>&rdquo;`
-              : `Scan your feet with your iPhone for <strong class="font-extrabold text-white">freedom from foot pain</strong>`}
+              ? `&ldquo;Groov turned my least favorite shoes into my favorite shoes... and my favorite shoes into my <strong class="font-black text-white">favorite favorite shoes.</strong>&rdquo;`
+              : `Scan your feet with your iPhone for <strong class="font-black text-white">freedom from foot pain</strong>`}
           </p>
           <div class="mt-8 flex items-center gap-3">
             ${testimonial.badge ? `<img src="${testimonial.badge}" alt="" class="h-[42px] w-auto shrink-0" />` : ""}
             <div class="min-w-0">
-              <p class="flex items-center gap-2 text-[15px] font-medium leading-none text-white">
+              <p class="flex items-center gap-2 ${type.bodySmall} font-medium text-white">
                 <span>${testimonial.handle}</span>
                 <img src="${assets.verified}" alt="Verified" class="h-[15px] w-[15px]" />
               </p>
-              <p class="mt-2 text-[13px] leading-none text-white/48">${testimonial.meta}</p>
+              <p class="mt-2 ${type.caption} text-white/48">${testimonial.meta}</p>
             </div>
           </div>
         </div>
@@ -361,11 +362,11 @@ function socialProofMeta(item) {
   return html`
     <div class="flex flex-col gap-2">
       <div class="flex items-end gap-[7px]">
-        <p class="text-[14px] font-medium leading-[1.2] text-white">${item.name}</p>
+        <p class="${type.bodySmall} font-medium text-white">${item.name}</p>
         <img src="${assets.verified}" alt="Verified" class="h-4 w-4 shrink-0" />
       </div>
-      ${item.role ? `<p class="text-[11.286px] leading-[1.2] text-[#858585]">${item.role}</p>` : ""}
-      ${item.meta ? `<p class="text-[12px] leading-none text-white/48">${item.meta}</p>` : ""}
+      ${item.role ? `<p class="${type.caption} text-[#858585]">${item.role}</p>` : ""}
+      ${item.meta ? `<p class="${type.caption} text-white/48">${item.meta}</p>` : ""}
     </div>
   `;
 }
@@ -384,7 +385,7 @@ function socialProofMediaCard(item, index) {
           `
         : ""}
       <div class="absolute inset-x-4 bottom-[21px] z-20 flex flex-col ${item.quote ? "gap-8" : "gap-0"}">
-        ${item.quote ? `<p class="max-w-[239px] text-[13px] font-semibold leading-[1.2] text-white">${item.quote}</p>` : ""}
+        ${item.quote ? `<p class="max-w-[239px] ${type.bodySmall} font-medium text-white">${item.quote}</p>` : ""}
         ${socialProofMeta(item)}
       </div>
     </article>
@@ -399,9 +400,9 @@ function socialProofPressCard(item, index) {
       </div>
       <div class="flex h-[189px] items-center justify-center rounded-[16px] bg-[#f5f5f5] px-6 text-center">
         <div class="flex max-w-[241px] flex-col items-center gap-6">
-          <p class="text-center text-[16px] leading-[1.1] tracking-[0.8px] text-[#7b7b7b]">
+          <p class="text-center ${type.bodySmall} text-[#7b7b7b]">
             <span>${item.quoteBefore}</span>
-            <span class="font-semibold text-[#2f2f2f]">${item.quoteEmphasis}</span>
+            <span class="font-bold text-[#2f2f2f]">${item.quoteEmphasis}</span>
             <span>${item.quoteAfter}</span>
           </p>
           <img src="${assets.socialProofFastCompany}" alt="Fast Company" class="h-[13px] w-[92px]" />
@@ -427,7 +428,7 @@ export function socialProofSection({ variant = "carousel" } = {}) {
       <div class="page-container">
         <div class="flex flex-col gap-5 md:flex-row md:items-end md:justify-between">
           <div class="max-w-[720px]">
-            <h2 class="font-display text-[34px] font-semibold leading-[0.98] text-black md:text-[52px]">
+            <h2 class="${type.h2} text-black">
               Helping athletes, doctors, and
               <span class="font-playfair text-[#3694f3] italic"> everyday</span>
               movers
@@ -483,14 +484,14 @@ export function groovForSection() {
   const shopAllButton = button({
     label: "Shop All",
     size: "sm",
-    className: "!h-[43.74px] !px-[25px] !text-[11.15px] !leading-[1.4] !shadow-none",
+    className: "!h-11 !px-6 !shadow-none",
   });
 
   const momentumButton = button({
     label: "Momentum",
     variant: "white",
     size: "sm",
-    className: "!h-[43.74px] !px-[25px] !text-[11.15px] !leading-[1.4] !shadow-none",
+    className: "!h-11 !px-6 !shadow-none",
   });
 
   return html`
@@ -499,9 +500,9 @@ export function groovForSection() {
         <div class="grid gap-6 md:grid-cols-[594px_578px] md:justify-center md:gap-[30px]">
           <article class="relative h-[507px] overflow-hidden rounded-[16px] bg-white shadow-[0_4px_32px_rgba(0,0,0,0.15)]">
             <div class="flex flex-col items-center px-6 pt-7 text-center md:px-10">
-              <h2 class="text-[28px] font-medium leading-[1.4] text-black">
+              <h2 class="${type.h4} text-black">
                 GROOV FOR
-                <span class="font-playfair text-[40px] font-semibold italic text-[#3694f3]">you</span>
+                <span class="font-playfair text-4xl md:text-5xl font-bold italic text-[#3694f3]">you</span>
               </h2>
               <div class="mt-5">${shopAllButton}</div>
             </div>
@@ -521,9 +522,9 @@ export function groovForSection() {
             <div class="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_18%_8%,rgba(61,149,250,0.42),rgba(61,149,250,0.0)_24%)]"></div>
             <div class="pointer-events-none absolute inset-x-0 bottom-0 h-[186px] bg-gradient-to-t from-black/62 via-black/26 to-transparent"></div>
             <div class="relative z-10 flex flex-col items-center px-8 pt-[35px] text-center text-white">
-              <h2 class="text-[29px] font-medium leading-[1.4] text-white">
+              <h2 class="${type.h4} text-white">
                 GROOV FOR
-                <span class="font-playfair text-[40px] font-semibold italic leading-[1.1]">teams</span>
+                <span class="font-playfair text-4xl md:text-5xl font-bold italic leading-none">teams</span>
               </h2>
               <div class="mt-[25px]">${momentumButton}</div>
             </div>
@@ -538,7 +539,7 @@ export function floatingCtaSection() {
   const ctaButton = button({
     label: "Why Groov",
     variant: "black",
-    className: "!h-[37px] !px-[25px] !text-[11.15px] !leading-[1.4] !shadow-none",
+    className: "!h-10 !px-6 !shadow-none",
   });
 
   return html`
@@ -557,8 +558,8 @@ export function floatingCtaSection() {
       <img src="${assets.ctaInsoleFloat2}" alt="" class="pointer-events-none absolute left-[109px] top-[186px] z-[5] h-[451px] w-[353px] select-none object-contain md:left-auto md:right-0 md:top-[31px] md:h-[660px] md:w-[517px]" />
 
       <div class="page-container relative z-10 hidden h-full md:block">
-        <div class="absolute left-[calc(50%+26px)] top-[579px] flex w-[810px] -translate-x-1/2 flex-col items-center gap-8 text-center">
-          <h2 class="text-[70px] font-medium leading-[1.1] text-white">
+        <div class="absolute left-[calc(50%+26px)] top-1/2 flex w-[810px] -translate-x-1/2 -translate-y-1/2 flex-col items-center gap-8 text-center">
+          <h2 class="${type.h1} text-white">
             We don't make your shoes. We make
             <em class="font-playfair font-bold italic">shoes</em>
             yours.
@@ -568,11 +569,11 @@ export function floatingCtaSection() {
       </div>
 
       <div class="relative z-10 h-full md:hidden">
-        <h2 class="absolute left-1/2 top-[61px] w-[373px] max-w-[calc(100%-40px)] -translate-x-1/2 text-center text-[48px] font-medium leading-[1.1] text-white">
+        <h2 class="absolute left-1/2 top-[61px] w-[373px] max-w-[calc(100%-40px)] -translate-x-1/2 text-center ${type.h1} text-white">
           We don't make your shoes.
         </h2>
         <div class="absolute left-1/2 top-[786px] flex w-[373px] max-w-[calc(100%-56px)] -translate-x-1/2 flex-col items-center gap-6 text-center">
-          <p class="text-[48px] font-medium leading-[1.1] text-white">
+          <p class="${type.h1} text-white">
             We make<br />
             <em class="font-playfair font-bold italic">shoes</em>
             yours.
@@ -590,7 +591,7 @@ export function trustedExpertsProofSection() {
       <div class="page-container">
         <div class="mx-auto flex max-w-[560px] flex-col items-center text-center">
           <img src="${assets.trusters}" alt="Groov trusters" class="h-[47px] w-[113px]" />
-          <h2 class="mt-4 text-[24px] font-medium leading-[1.08] tracking-[-0.01em] text-black md:text-[28px]">
+          <h2 class="mt-4 ${type.h4} text-black">
             Backed by the experts &mdash; from the world's top foot doctors to elite athletes
           </h2>
         </div>
@@ -624,8 +625,8 @@ export function favoriteShoeSection() {
     <section class="overflow-hidden bg-white py-10" data-favorite-shoe-section>
       <div class="page-container">
         <div class="flex items-start justify-between gap-8">
-          <h2 class="max-w-[390px] font-display text-[34px] font-medium leading-[1.04] tracking-[-0.02em] text-black">
-            Make every shoe<br />your <em class="font-serif font-bold italic">favorite</em> shoe.
+          <h2 class="max-w-[390px] ${type.h2} text-black">
+            Make every shoe<br />your <em class="font-playfair font-bold italic">favorite</em> shoe.
           </h2>
           <div class="mt-4 hidden items-center gap-4 md:flex" aria-label="Favorite shoe carousel controls">
             <button type="button" class="favorite-carousel-arrow favorite-carousel-arrow-prev flex h-[50px] w-[50px] items-center justify-center rounded-full bg-[var(--groov-blue)] transition hover:bg-[#2488e8] disabled:cursor-not-allowed disabled:opacity-35" aria-label="Previous card" data-favorite-prev disabled>
@@ -656,6 +657,32 @@ export function favoriteShoeSection() {
   `;
 }
 
+export function modelTabsIntroSection() {
+  return html`
+    <section class="bg-[#17212b] px-0 pb-0 pt-14 md:pt-20">
+      <div class="page-container">
+        <div class="mx-auto flex max-w-[920px] flex-col items-center text-center">
+          <h2 class="max-w-[820px] ${type.h2} text-white">
+            Transform your footwear from off-the-shelf to
+            <span class="font-playfair font-bold italic text-[#3694f3]">custom</span>
+            in under 3 minutes
+          </h2>
+          <p class="mt-6 max-w-[690px] ${type.bodySmall} text-white/65">
+            Groov creates custom-fit insoles designed specifically for your feet, your movement, and your lifestyle. Using a simple iPhone foot scan, we transform everyday footwear into shoes tailor fit to you.
+          </p>
+          <div class="mt-8 md:mt-9">
+            ${button({
+              label: "Get Groov",
+              size: "sm",
+              className: "!h-10 !px-6 !shadow-[0_18px_36px_rgba(54,148,243,0.28)] hover:-translate-y-0.5",
+            })}
+          </div>
+        </div>
+      </div>
+    </section>
+  `;
+}
+
 export function modelCard(card) {
   return html`
     <button type="button" class="swiper-slide group relative flex flex-col items-center overflow-hidden rounded-[9px] border border-[#242f3b] bg-[#1b2530] px-8 pb-11 pt-12 text-center transition hover:border-white/20 md:h-[430px] md:rounded-[24px] md:pb-8 md:pt-11" aria-pressed="${card.selected ? "true" : "false"}" data-model-card data-model-name="${card.name}">
@@ -664,8 +691,8 @@ export function modelCard(card) {
         <img src="${card.image}" alt="${card.name} insole" class="h-full w-full object-contain" />
       </span>
       <span class="mt-10 flex flex-col items-center gap-3 md:mt-8 md:gap-2">
-        <span class="${card.name === "The Luxe" ? "text-[20px]" : "text-[31px]"} font-bold leading-tight text-white md:text-[24px]">${card.name}</span>
-        <span class="max-w-[244px] text-[16px] leading-[1.2] text-[#737b82] md:max-w-[190px] md:text-[14px]">${card.description}</span>
+        <span class="${type.h4} text-white">${card.name}</span>
+        <span class="max-w-[244px] ${type.bodySmall} text-[#737b82] md:max-w-[190px]">${card.description}</span>
       </span>
     </button>
   `;
@@ -684,8 +711,8 @@ export function modelTabsSection() {
             ]
               .map(
                 ([index, step, label]) => html`
-                  <button type="button" class="flex shrink-0 items-center gap-2 rounded-full border border-transparent py-[5px] pl-[5px] pr-3 text-left text-[14px] font-medium transition md:gap-3 md:py-2 md:pl-2 md:pr-5 md:text-[18px]" role="tab" aria-selected="${index === "0"}" aria-controls="step-panel-${Number(index) + 1}" id="step-tab-${Number(index) + 1}" data-step-tab data-step-index="${index}">
-                    <span class="step-tab-badge h-[20px] w-[42px] items-center justify-center rounded-full text-[9px] font-black leading-none md:h-[30px] md:w-[69px] md:text-[13px]">${step}</span>
+                  <button type="button" class="flex shrink-0 items-center gap-2 rounded-full border border-transparent py-[5px] pl-[5px] pr-3 text-left ${type.ui} transition md:gap-3 md:py-2 md:pl-2 md:pr-5" role="tab" aria-selected="${index === "0"}" aria-controls="step-panel-${Number(index) + 1}" id="step-tab-${Number(index) + 1}" data-step-tab data-step-index="${index}">
+                    <span class="step-tab-badge h-[20px] w-[42px] items-center justify-center rounded-full ${type.caption} font-black leading-none md:h-[30px] md:w-[69px]">${step}</span>
                     <span class="whitespace-nowrap">${label}</span>
                   </button>
                 `,
@@ -695,7 +722,7 @@ export function modelTabsSection() {
           <div class="w-full">
             <div id="step-panel-1" role="tabpanel" aria-labelledby="step-tab-1" data-step-panel data-step-index="0">
               <div class="flex flex-col gap-6">
-                <div class="flex flex-col items-center justify-center gap-5 rounded-[9px] border border-[#242f3b] bg-[#1b2530] px-6 py-4 text-center text-[14px] text-white/50 md:flex-row md:items-center md:justify-between md:rounded-full md:border-0 md:px-8 md:text-left md:text-[18px]">
+                <div class="flex flex-col items-center justify-center gap-5 rounded-[9px] border border-[#242f3b] bg-[#1b2530] px-6 py-4 text-center ${type.bodySmall} text-white/50 md:flex-row md:items-center md:justify-between md:rounded-full md:border-0 md:px-8 md:text-left">
                   <p>Purchase one of our <strong class="font-bold text-white">4 insole models.</strong></p>
                   <div class="hidden flex-col gap-4 md:flex md:flex-row md:items-center md:gap-8">
                     <p>Not sure which Groovs are right for you?</p>
@@ -707,7 +734,7 @@ export function modelTabsSection() {
                   <div class="model-card-pagination swiper-pagination md:hidden"></div>
                 </div>
                 <div class="flex flex-col items-center gap-6 rounded-[13px] border border-[#242f3b] bg-[#1b2530] px-8 py-6 text-center md:hidden">
-                  <p class="text-[17px] leading-[1.2] text-white/60">Not sure which Groovs are right for you?</p>
+                  <p class="${type.body} font-medium text-white/60">Not sure which Groovs are right for you?</p>
                   ${button({ label: "Take our quiz", variant: "secondary", size: "md", className: "w-full" })}
                 </div>
               </div>
@@ -732,6 +759,7 @@ export function homePage() {
       ${modelScrollSection()}
       ${testimonialRevealSection()}
       ${trustedMarqueeSection()}
+      ${modelTabsIntroSection()}
       ${modelTabsSection()}
       ${trustedExpertsProofSection()}
       ${videoTestimonialsSection()}
@@ -752,6 +780,7 @@ export function homePageV2() {
       ${floatingCtaSection()}
       ${trustedExpertsProofSection()}
       ${videoTestimonialsSection()}
+      ${modelTabsIntroSection()}
       ${modelTabsSection()}
       ${favoriteShoeSection()}
       ${socialProofSection({ variant: "carousel" })}
