@@ -22,5 +22,20 @@ export default {
         },
       },
     },
+    options: {
+      storySort: {
+        order: [
+          "Groov",
+          [
+            "Foundations",
+            "Components",
+            "Navigation",
+            "Sections",
+            ["Hero", "Product Discovery", "Social Proof", "Conversion"],
+            "Pages",
+          ],
+        ],
+      },
+    },
   },
 };

@@ -13,13 +13,13 @@ function buttonStory(options, surface = "light") {
 }
 
 export default {
-  title: "Buttons/Button",
+  title: "Groov/Components/Button",
   tags: ["autodocs"],
   parameters: {
     docs: {
       description: {
         component:
-          "Reusable Groov button template. All size tokens currently share the same anatomy: h-10 px-6 text-[13px].",
+          "Reusable Groov button template. All size tokens currently share the same anatomy: h-10 px-6 text-sm.",
       },
     },
   },

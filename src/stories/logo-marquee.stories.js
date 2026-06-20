@@ -3,7 +3,7 @@ import { assets } from "../sections/data.js";
 import { renderHtml } from "./render.js";
 
 export default {
-  title: "Components/Logo Marquee",
+  title: "Groov/Components/Logo Marquee",
   render: () =>
     renderHtml(
       `<div class="bg-white py-16">

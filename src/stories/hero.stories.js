@@ -2,7 +2,7 @@ import { heroSection } from "../sections/templates.js";
 import { renderHtml } from "./render.js";
 
 export default {
-  title: "Groov/Hero Header Sections/Hero Cards",
+  title: "Groov/Sections/Hero/Editorial Cards",
   render: () => renderHtml(heroSection()),
 };
 

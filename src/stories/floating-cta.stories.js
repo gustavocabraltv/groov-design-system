@@ -2,7 +2,7 @@ import { floatingCtaSection } from "../sections/templates.js";
 import { renderHtml } from "./render.js";
 
 export default {
-  title: "Groov/Sections/Floating CTA",
+  title: "Groov/Sections/Conversion/Floating CTA",
   render: () => renderHtml(floatingCtaSection(), { init: false }),
 };
 

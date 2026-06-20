@@ -1,9 +1,9 @@
-import { modelTabsSection } from "../sections/templates.js";
+import { modelTabsIntroSection } from "../sections/templates.js";
 import { renderHtml } from "./render.js";
 
 export default {
-  title: "Groov/Sections/Product Discovery/Fit Process Tabs",
-  render: () => renderHtml(modelTabsSection()),
+  title: "Groov/Sections/Product Discovery/Fit Process Intro",
+  render: () => renderHtml(modelTabsIntroSection(), { init: false }),
 };
 
 export const Desktop = {

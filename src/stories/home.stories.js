@@ -2,7 +2,7 @@ import { homePage, homePageV2 } from "../sections/templates.js";
 import { renderHtml } from "./render.js";
 
 export default {
-  title: "Groov/Home Page",
+  title: "Groov/Pages/Home",
   render: () => renderHtml(homePage()),
 };
 

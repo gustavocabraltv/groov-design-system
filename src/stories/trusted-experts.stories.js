@@ -2,7 +2,7 @@ import { trustedExpertsProofSection, trustedExpertsSection } from "../sections/t
 import { renderHtml } from "./render.js";
 
 export default {
-  title: "Groov/Sections/Trusted Experts Proof",
+  title: "Groov/Sections/Social Proof/Expert Endorsement",
   render: () => renderHtml(trustedExpertsProofSection(), { init: false }),
 };
 

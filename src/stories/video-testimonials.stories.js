@@ -2,7 +2,7 @@ import { videoTestimonialsSection } from "../sections/templates.js";
 import { renderHtml } from "./render.js";
 
 export default {
-  title: "Groov/Sections/Video Testimonials",
+  title: "Groov/Sections/Social Proof/Video Testimonials",
   render: () => renderHtml(videoTestimonialsSection(), { init: false }),
 };
 

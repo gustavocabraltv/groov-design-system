@@ -2,7 +2,7 @@ import { heroModelCarouselSection } from "../sections/templates.js";
 import { renderHtml } from "./render.js";
 
 export default {
-  title: "Groov/Hero Header Sections/Hero Model Carousel",
+  title: "Groov/Sections/Hero/Model Carousel",
   render: () => renderHtml(heroModelCarouselSection()),
 };
 

@@ -2,7 +2,7 @@ import { socialProofSection } from "../sections/templates.js";
 import { renderHtml } from "./render.js";
 
 export default {
-  title: "Groov/Sections/Social Proof",
+  title: "Groov/Sections/Social Proof/Press and Customer Carousel",
 };
 
 export const CarouselDesktop = {

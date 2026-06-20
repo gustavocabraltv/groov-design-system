@@ -2,7 +2,7 @@ import { groovForSection } from "../sections/templates.js";
 import { renderHtml } from "./render.js";
 
 export default {
-  title: "Groov/Sections/Groov For",
+  title: "Groov/Sections/Product Discovery/Audience Cards",
   render: () => renderHtml(groovForSection(), { init: false }),
 };
 
