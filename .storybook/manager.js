@@ -3,8 +3,8 @@ import { create } from "storybook/theming";
 
 addons.setConfig({
   theme: create({
-    base: "light",
+    base: "dark",
     brandTitle: "Groov",
-    brandImage: "/assets/logo-groov.svg",
+    brandImage: "/assets/logo-groov-white.svg",
   }),
 });
