@@ -125,7 +125,9 @@ export function initHeroModelCarouselSection(section) {
   if (!total || !items.length) return;
 
   let activeIndex = -1;
-  let startedAt = 0;
+  let elapsed = 0;
+  let startedAt = null;
+  let cleanupActiveMedia = () => {};
 
   scrollModels.forEach(preloadModelMedia);
 
@@ -146,21 +148,74 @@ export function initHeroModelCarouselSection(section) {
     });
   }
 
+  function startProgress(index) {
+    if (index !== activeIndex || startedAt !== null) return;
+    startedAt = performance.now();
+  }
+
+  function pauseProgress(index) {
+    if (index !== activeIndex || startedAt === null) return;
+    elapsed += performance.now() - startedAt;
+    startedAt = null;
+  }
+
+  function getProgress() {
+    const currentElapsed = startedAt === null ? elapsed : elapsed + performance.now() - startedAt;
+    return clamp(currentElapsed / getDuration(activeIndex), 0, 1);
+  }
+
+  function waitForActiveMedia(media, index) {
+    if (!(media instanceof HTMLVideoElement)) {
+      startProgress(index);
+      return;
+    }
+
+    const handlePlaying = () => startProgress(index);
+    const handleWaiting = () => pauseProgress(index);
+
+    media.addEventListener("playing", handlePlaying);
+    media.addEventListener("waiting", handleWaiting);
+    media.addEventListener("stalled", handleWaiting);
+    cleanupActiveMedia = () => {
+      media.removeEventListener("playing", handlePlaying);
+      media.removeEventListener("waiting", handleWaiting);
+      media.removeEventListener("stalled", handleWaiting);
+    };
+
+    if (!media.paused && media.readyState >= HTMLMediaElement.HAVE_CURRENT_DATA) {
+      startProgress(index);
+    }
+
+    const playPromise = media.play();
+    if (playPromise && typeof playPromise.catch === "function") {
+      playPromise.catch(() => startProgress(index));
+    }
+  }
+
   function setActiveModel(index) {
+    cleanupActiveMedia();
+    cleanupActiveMedia = () => {};
     activeIndex = (index + total) % total;
-    startedAt = Date.now();
+    elapsed = 0;
+    startedAt = null;
 
     mediaItems.forEach((media, mediaIndex) => {
       const isActive = mediaIndex === activeIndex;
       media.classList.toggle("is-active", isActive);
-      syncActiveVideo(media, isActive);
+
+      if (isActive) {
+        waitForActiveMedia(media, activeIndex);
+        return;
+      }
+
+      syncActiveVideo(media, false);
     });
 
     renderProgress(0);
   }
 
   function tick() {
-    const progress = clamp((Date.now() - startedAt) / getDuration(activeIndex), 0, 1);
+    const progress = activeIndex === -1 ? 0 : getProgress();
     renderProgress(progress);
 
     if (progress >= 1) {
