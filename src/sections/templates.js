@@ -23,7 +23,6 @@ function renderScrollModelMedia(model, index, { hero = false } = {}) {
         ${baseAttributes.join(" ")}
         src="${model.video}"
         ${model.image ? `poster="${model.image}"` : ""}
-        autoplay
         muted
         loop
         playsinline

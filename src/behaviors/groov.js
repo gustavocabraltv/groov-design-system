@@ -164,6 +164,17 @@ export function initHeroModelCarouselSection(section) {
     return clamp(currentElapsed / getDuration(activeIndex), 0, 1);
   }
 
+  function resetVideo(media) {
+    if (!(media instanceof HTMLVideoElement)) return;
+
+    media.pause();
+    try {
+      media.currentTime = 0;
+    } catch {
+      // Some browsers can reject seeks before metadata exists; pausing is still safe.
+    }
+  }
+
   function waitForActiveMedia(media, index) {
     if (!(media instanceof HTMLVideoElement)) {
       startProgress(index);
@@ -182,13 +193,10 @@ export function initHeroModelCarouselSection(section) {
       media.removeEventListener("stalled", handleWaiting);
     };
 
-    if (!media.paused && media.readyState >= HTMLMediaElement.HAVE_CURRENT_DATA) {
-      startProgress(index);
-    }
-
+    resetVideo(media);
     const playPromise = media.play();
     if (playPromise && typeof playPromise.catch === "function") {
-      playPromise.catch(() => startProgress(index));
+      playPromise.catch(() => {});
     }
   }
 
@@ -208,7 +216,7 @@ export function initHeroModelCarouselSection(section) {
         return;
       }
 
-      syncActiveVideo(media, false);
+      resetVideo(media);
     });
 
     renderProgress(0);
