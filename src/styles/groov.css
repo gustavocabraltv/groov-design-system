@@ -187,6 +187,15 @@ body {
   transform: scale(1);
 }
 
+.model-video-fallback {
+  opacity: 1;
+  transition: opacity 260ms ease;
+}
+
+.model-media.is-video-playing .model-video-fallback {
+  opacity: 0;
+}
+
 .model-copy {
   opacity: 1;
   transform: translateY(0);

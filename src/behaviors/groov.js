@@ -20,17 +20,20 @@ function preloadModelMedia(model) {
 }
 
 function syncActiveVideo(media, isActive) {
-  if (!(media instanceof HTMLVideoElement)) return;
+  const video = media instanceof HTMLVideoElement ? media : media.querySelector?.("[data-video-element]");
+  if (!(video instanceof HTMLVideoElement)) return;
 
   if (isActive) {
-    const playPromise = media.play();
+    video.addEventListener("playing", () => media.classList?.add("is-video-playing"), { once: true });
+    const playPromise = video.play();
     if (playPromise && typeof playPromise.catch === "function") {
       playPromise.catch(() => {});
     }
     return;
   }
 
-  media.pause();
+  media.classList?.remove("is-video-playing");
+  video.pause();
 }
 
 export function initModelScrollSection(section) {
@@ -169,21 +172,24 @@ export function initHeroModelCarouselSection(section) {
   }
 
   function resetVideo(media) {
-    if (!(media instanceof HTMLVideoElement)) return;
+    const video = media instanceof HTMLVideoElement ? media : media.querySelector?.("[data-video-element]");
+    media.classList?.remove("is-video-playing");
+    if (!(video instanceof HTMLVideoElement)) return;
 
-    media.pause();
+    video.pause();
     try {
-      media.currentTime = 0;
+      video.currentTime = 0;
     } catch {
       // Some browsers can reject seeks before metadata exists; pausing is still safe.
     }
   }
 
   function primeVideo(media) {
-    if (!(media instanceof HTMLVideoElement) || primedMedia.has(media)) return;
-    primedMedia.add(media);
-    media.preload = "auto";
-    media.load();
+    const video = media instanceof HTMLVideoElement ? media : media.querySelector?.("[data-video-element]");
+    if (!(video instanceof HTMLVideoElement) || primedMedia.has(video)) return;
+    primedMedia.add(video);
+    video.preload = "auto";
+    video.load();
   }
 
   function primeNextVideo() {
@@ -191,7 +197,7 @@ export function initHeroModelCarouselSection(section) {
 
     for (let offset = 1; offset < total; offset += 1) {
       const nextMedia = mediaItems[(activeIndex + offset) % total];
-      if (nextMedia instanceof HTMLVideoElement) {
+      if (nextMedia.querySelector?.("[data-video-element]") instanceof HTMLVideoElement || nextMedia instanceof HTMLVideoElement) {
         primeVideo(nextMedia);
         return;
       }
@@ -199,7 +205,8 @@ export function initHeroModelCarouselSection(section) {
   }
 
   function waitForActiveMedia(media, index) {
-    if (!(media instanceof HTMLVideoElement)) {
+    const video = media instanceof HTMLVideoElement ? media : media.querySelector?.("[data-video-element]");
+    if (!(video instanceof HTMLVideoElement)) {
       startProgress(index);
       return;
     }
@@ -207,22 +214,23 @@ export function initHeroModelCarouselSection(section) {
     primeVideo(media);
 
     const handlePlaying = () => {
+      media.classList.add("is-video-playing");
       startProgress(index);
       primeNextVideo();
     };
     const handleWaiting = () => pauseProgress(index);
 
-    media.addEventListener("playing", handlePlaying);
-    media.addEventListener("waiting", handleWaiting);
-    media.addEventListener("stalled", handleWaiting);
+    video.addEventListener("playing", handlePlaying);
+    video.addEventListener("waiting", handleWaiting);
+    video.addEventListener("stalled", handleWaiting);
     cleanupActiveMedia = () => {
-      media.removeEventListener("playing", handlePlaying);
-      media.removeEventListener("waiting", handleWaiting);
-      media.removeEventListener("stalled", handleWaiting);
+      video.removeEventListener("playing", handlePlaying);
+      video.removeEventListener("waiting", handleWaiting);
+      video.removeEventListener("stalled", handleWaiting);
     };
 
     resetVideo(media);
-    const playPromise = media.play();
+    const playPromise = video.play();
     if (playPromise && typeof playPromise.catch === "function") {
       playPromise.catch(() => {});
     }

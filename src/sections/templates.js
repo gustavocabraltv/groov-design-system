@@ -6,9 +6,10 @@ import { type } from "../styles/typography.js";
 const html = String.raw;
 
 function renderScrollModelMedia(model, index, { hero = false, stagedLoading = false } = {}) {
+  const dataAttribute = hero ? `data-hero-model-media` : `data-model-media`;
   const baseAttributes = [
     `class="model-media ${index === 0 ? "is-active" : ""} absolute inset-0 h-full w-full object-cover"`,
-    hero ? `data-hero-model-media` : `data-model-media`,
+    dataAttribute,
     `data-model-index="${index}"`,
     `data-model-name="${model.name}"`,
   ];
@@ -19,16 +20,20 @@ function renderScrollModelMedia(model, index, { hero = false, stagedLoading = fa
 
   if (model.video) {
     return html`
-      <video
-        ${baseAttributes.join(" ")}
-        src="${model.video}"
-        ${model.image ? `poster="${model.image}"` : ""}
-        muted
-        loop
-        playsinline
-        preload="${stagedLoading && index > 0 ? "metadata" : "auto"}"
-        ${index === 0 ? "" : "aria-hidden=\"true\""}
-      ></video>
+      <div ${baseAttributes.join(" ")} data-video-media>
+        ${model.image ? `<img src="${model.image}" alt="" class="model-video-fallback absolute inset-0 h-full w-full object-cover" data-video-fallback ${index === 0 ? `fetchpriority="high"` : `loading="lazy"`} decoding="async" />` : ""}
+        <video
+          class="model-video absolute inset-0 h-full w-full object-cover"
+          src="${model.video}"
+          ${model.image ? `poster="${model.image}"` : ""}
+          muted
+          loop
+          playsinline
+          preload="${stagedLoading && index > 0 ? "metadata" : "auto"}"
+          data-video-element
+          ${index === 0 ? "" : "aria-hidden=\"true\""}
+        ></video>
+      </div>
     `;
   }
 
