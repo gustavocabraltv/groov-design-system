@@ -5,7 +5,7 @@ import { type } from "../styles/typography.js";
 
 const html = String.raw;
 
-function renderScrollModelMedia(model, index, { hero = false } = {}) {
+function renderScrollModelMedia(model, index, { hero = false, stagedLoading = false } = {}) {
   const baseAttributes = [
     `class="model-media ${index === 0 ? "is-active" : ""} absolute inset-0 h-full w-full object-cover"`,
     hero ? `data-hero-model-media` : `data-model-media`,
@@ -26,7 +26,7 @@ function renderScrollModelMedia(model, index, { hero = false } = {}) {
         muted
         loop
         playsinline
-        preload="auto"
+        preload="${stagedLoading && index > 0 ? "metadata" : "auto"}"
         ${index === 0 ? "" : "aria-hidden=\"true\""}
       ></video>
     `;
@@ -164,12 +164,12 @@ export function heroSection() {
   `;
 }
 
-export function heroModelCarouselSection() {
+export function heroModelCarouselSection({ stagedLoading = false } = {}) {
   return html`
-    <section class="hero-model-carousel-section relative h-screen min-h-[720px] overflow-hidden bg-[#111] text-white" data-hero-model-carousel-section>
+    <section class="hero-model-carousel-section relative h-screen min-h-[720px] overflow-hidden bg-[#111] text-white" data-hero-model-carousel-section ${stagedLoading ? `data-video-loading-strategy="staged"` : ""}>
       <div class="absolute inset-0" aria-hidden="true" data-hero-model-media-layer>
         ${scrollModels
-          .map((model, index) => renderScrollModelMedia(model, index, { hero: true }))
+          .map((model, index) => renderScrollModelMedia(model, index, { hero: true, stagedLoading }))
           .join("")}
         <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(0,0,0,0.34)_0%,rgba(0,0,0,0.38)_42%,rgba(0,0,0,0.46)_100%)]"></div>
         <div class="absolute inset-x-0 top-0 h-[34vh] bg-gradient-to-b from-white/24 via-white/8 to-transparent"></div>

@@ -123,13 +123,17 @@ export function initHeroModelCarouselSection(section) {
   const next = section.querySelector("[data-hero-model-next]");
   const total = mediaItems.length;
   if (!total || !items.length) return;
+  const stagedLoading = section.dataset.videoLoadingStrategy === "staged";
 
   let activeIndex = -1;
   let elapsed = 0;
   let startedAt = null;
   let cleanupActiveMedia = () => {};
+  const primedMedia = new WeakSet();
 
-  scrollModels.forEach(preloadModelMedia);
+  if (!stagedLoading) {
+    scrollModels.forEach(preloadModelMedia);
+  }
 
   function getDuration(index) {
     const modelDuration = Number(items[index]?.dataset.modelDuration || mediaItems[index]?.dataset.modelDuration || scrollModels[index]?.duration || 5000);
@@ -175,13 +179,37 @@ export function initHeroModelCarouselSection(section) {
     }
   }
 
+  function primeVideo(media) {
+    if (!(media instanceof HTMLVideoElement) || primedMedia.has(media)) return;
+    primedMedia.add(media);
+    media.preload = "auto";
+    media.load();
+  }
+
+  function primeNextVideo() {
+    if (!stagedLoading) return;
+
+    for (let offset = 1; offset < total; offset += 1) {
+      const nextMedia = mediaItems[(activeIndex + offset) % total];
+      if (nextMedia instanceof HTMLVideoElement) {
+        primeVideo(nextMedia);
+        return;
+      }
+    }
+  }
+
   function waitForActiveMedia(media, index) {
     if (!(media instanceof HTMLVideoElement)) {
       startProgress(index);
       return;
     }
 
-    const handlePlaying = () => startProgress(index);
+    primeVideo(media);
+
+    const handlePlaying = () => {
+      startProgress(index);
+      primeNextVideo();
+    };
     const handleWaiting = () => pauseProgress(index);
 
     media.addEventListener("playing", handlePlaying);
