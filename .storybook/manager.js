@@ -5,6 +5,6 @@ addons.setConfig({
   theme: create({
     base: "dark",
     brandTitle: "Groov",
-    brandImage: "/assets/logo-groov-white.svg",
+    brandImage: "assets/logo-groov-white.svg",
   }),
 });
