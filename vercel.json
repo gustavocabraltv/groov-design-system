@@ -1,5 +1,12 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
   "buildCommand": "npm run build-storybook:groov",
-  "outputDirectory": "storybook-static"
+  "outputDirectory": "storybook-static",
+  "redirects": [
+    {
+      "source": "/groov",
+      "destination": "/groov/",
+      "permanent": false
+    }
+  ]
 }
