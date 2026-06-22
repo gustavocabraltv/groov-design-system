@@ -8,7 +8,7 @@
     "preview": "vite preview",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
-    "build-storybook:groov": "rm -rf storybook-static && storybook build -o storybook-static/groov"
+    "build-storybook:groov": "rm -rf storybook-static && storybook build -o storybook-static/groov && cp deploy/index.html storybook-static/index.html"
   },
   "devDependencies": {
     "@storybook/addon-docs": "^10.4.5",

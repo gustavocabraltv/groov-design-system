@@ -1,0 +1,213 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Gustavo Cabral</title>
+    <meta
+      name="description"
+      content="Product Designer and Creative Developer leading product design and digital experiences at Groov."
+    />
+    <style>
+      :root {
+        color-scheme: dark;
+        --bg: #191919;
+        --text: #f3f3f3;
+        --muted: #878787;
+        --line: rgba(255, 255, 255, 0.1);
+        --accent: #f59a23;
+      }
+
+      @font-face {
+        font-family: "Neue Haas Display";
+        src: url("/groov/assets/fonts/NeueHaasDisplay/NeueHaasDisplayRoman.ttf") format("truetype");
+        font-weight: 400;
+        font-style: normal;
+        font-display: swap;
+      }
+
+      @font-face {
+        font-family: "Neue Haas Display";
+        src: url("/groov/assets/fonts/NeueHaasDisplay/NeueHaasDisplayMediu.ttf") format("truetype");
+        font-weight: 500 700;
+        font-style: normal;
+        font-display: swap;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html,
+      body {
+        min-height: 100%;
+      }
+
+      body {
+        margin: 0;
+        background: var(--bg);
+        color: var(--text);
+        font-family: "Neue Haas Display", ui-sans-serif, system-ui, sans-serif;
+        letter-spacing: -0.035em;
+      }
+
+      main {
+        display: grid;
+        min-height: 100vh;
+        grid-template-columns: minmax(220px, 320px) minmax(0, 760px);
+        gap: clamp(56px, 10vw, 140px);
+        align-items: start;
+        justify-content: center;
+        padding: clamp(56px, 11vw, 140px) clamp(24px, 7vw, 120px);
+      }
+
+      .identity {
+        position: sticky;
+        top: 56px;
+      }
+
+      h1,
+      h2,
+      p {
+        margin: 0;
+      }
+
+      h1 {
+        font-size: clamp(28px, 3vw, 32px);
+        line-height: 0.95;
+        font-weight: 700;
+      }
+
+      h2 {
+        font-size: clamp(28px, 3vw, 32px);
+        line-height: 0.95;
+        font-weight: 700;
+      }
+
+      .status {
+        display: inline-flex;
+        align-items: center;
+        gap: 9px;
+        margin-top: 14px;
+        border: 1px solid var(--line);
+        border-radius: 999px;
+        padding: 7px 12px;
+        color: var(--muted);
+        font-size: 14px;
+        line-height: 1;
+        letter-spacing: -0.015em;
+      }
+
+      .status::before {
+        content: "";
+        width: 4px;
+        height: 4px;
+        border-radius: 999px;
+        background: var(--accent);
+      }
+
+      .bio {
+        display: grid;
+        gap: clamp(40px, 5vw, 64px);
+      }
+
+      .copy {
+        display: grid;
+        gap: clamp(42px, 6vw, 76px);
+        color: var(--muted);
+        font-size: clamp(28px, 3.2vw, 36px);
+        line-height: 1.23;
+        font-weight: 500;
+        max-width: 760px;
+      }
+
+      .copy strong {
+        color: var(--text);
+        font-weight: 500;
+      }
+
+      .links {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+      }
+
+      a {
+        display: inline-flex;
+        align-items: center;
+        min-height: 40px;
+        border: 1px solid var(--line);
+        border-radius: 999px;
+        padding: 0 16px;
+        color: var(--text);
+        font-size: 14px;
+        line-height: 1;
+        letter-spacing: -0.015em;
+        text-decoration: none;
+        transition:
+          border-color 180ms ease,
+          background-color 180ms ease,
+          color 180ms ease;
+      }
+
+      a:hover {
+        border-color: rgba(255, 255, 255, 0.3);
+        background: rgba(255, 255, 255, 0.06);
+      }
+
+      @media (max-width: 820px) {
+        main {
+          grid-template-columns: 1fr;
+          gap: 64px;
+          padding-block: 44px 72px;
+        }
+
+        .identity {
+          position: static;
+        }
+
+        .copy {
+          font-size: clamp(25px, 8vw, 34px);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <aside class="identity" aria-label="Profile">
+        <h1>Gustavo Cabral</h1>
+        <p class="status">Unavailable for new work.</p>
+      </aside>
+
+      <section class="bio" aria-label="About Gustavo Cabral">
+        <h2>Product Designer &amp; Creative Developer</h2>
+
+        <div class="copy">
+          <p>
+            Currently leading Product Design and digital experiences at <strong>Groov</strong>, helping shape the future of
+            AI-powered custom insoles through product design, branding, and front-end development.
+          </p>
+
+          <p>
+            Previously spent 3+ years at <strong>Febacapital</strong>, partnering with startups across fintech, SaaS,
+            healthcare, HR, food tech, and real estate to design, launch, and scale digital products.
+          </p>
+
+          <p>
+            Worked with companies such as HomeYou, Cobre Fácil, Credoro, Goomer, Coalize, Abrahao, Leoa, Assinafy,
+            Atletis, Topway, Chawork, Deliway, and Inovar.
+          </p>
+
+          <p>
+            With over 10 years of experience, I operate at the intersection of product design, brand systems, creative
+            direction, and software development.
+          </p>
+        </div>
+
+        <nav class="links" aria-label="Project links">
+          <a href="/groov/">Open Groov Storybook</a>
+        </nav>
+      </section>
+    </main>
+  </body>
+</html>
